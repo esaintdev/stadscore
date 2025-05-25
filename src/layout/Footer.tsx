@@ -20,8 +20,8 @@ const Footer = () => {
             <div>
               <img 
                 src={theme === 'dark' 
-                  ? "/lovable-uploads/facf8c2e-b9ae-4b35-a1db-11ba79454868.png" 
-                  : "/lovable-uploads/fcb9b9df-c30b-4891-abd2-c9d60658f76e.png"} 
+                  ? "/imagesand/facf8c2e-b9ae-4b35-a1db-11ba79454868.png" 
+                  : "/imagesand/14050421-b4c8-49fe-9025-3bbd93a7bf76.png"} 
                 alt="Stadscore Logo" 
                 className="h-12" 
               />

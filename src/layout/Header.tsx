@@ -4,10 +4,14 @@ import { useState, useEffect } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useTheme } from '@/hooks/use-theme';
 import { Menu, X } from 'lucide-react';
+import Banner from '@/layout/Banner';
+import SportCategories from '@/components/sportCategories';
+
 
 const Header = () => {
   const { theme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedSport, setSelectedSport] = useState<string>('football');
   
   // Close menu when clicking outside
   useEffect(() => {
@@ -37,16 +41,25 @@ const Header = () => {
   
   return (
     <header className="sticky top-0 z-50 w-full bg-[#00141E] overflow-visible">
-      <div className="bg-[#001a29] py-2 px-4">
+      <div className="bg-[#001a29] py-5 px-4">
         <p className="text-white text-center text-xs sm:text-sm md:text-base font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
           ⚽ Football Live Scores • Latest Football Results • World Cup 2026 • Live Matches • League Standings • Match Stats
         </p>
+      </div>
+      <Banner />
+      <div className="w-full bg-[#001a29] py-2">
+        <div className="container mx-auto">
+          <SportCategories 
+            selectedSport={selectedSport} 
+            onSelectSport={setSelectedSport} 
+          />
+        </div>
       </div>
       <div className="container flex h-20 items-center justify-between">
         
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
-            <img src="/lovable-uploads/facf8c2e-b9ae-4b35-a1db-11ba79454868.png" alt="Stadscore Logo" className="h-8" />
+            <img src="/imagesand/facf8c2e-b9ae-4b35-a1db-11ba79454868.png" alt="Stadscore Logo" className="h-8" />
           </Link>
         </div>
 
@@ -146,6 +159,9 @@ const Header = () => {
           <div className="pt-4 border-t border-gray-700 mt-auto mb-8">
             <div className="flex justify-center">
               <ThemeToggle />
+            </div>
+            <div>
+             
             </div>
           </div>
         </div>

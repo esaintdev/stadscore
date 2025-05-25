@@ -31,7 +31,7 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({
           <Button
             variant={activeLeagueId === null ? "default" : "outline"}
             size="sm"
-            className="w-full justify-start bg-white text-black hover:bg-gray-100 transition-colors duration-200 text-left px-4 py-2 rounded-md font-medium"
+            className="w-full justify-start bg-[#ff5b00] text-white border-none transition-colors duration-200 text-left px-4 py-2 rounded-sm font-bold"
             onClick={() => onSelectLeague('')}
           >
             All Leagues
@@ -43,7 +43,7 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({
               variant={activeLeagueId === league.id ? "default" : "outline"}
               size="sm"
               asChild
-              className="w-full justify-start items-center bg-white text-black hover:bg-gray-100 gap-3 transition-colors duration-200 text-left px-4 py-2 rounded-md font-medium"
+              className="w-full justify-start items-center bg-gray-200 border-none text-black hover:bg-orange-500 gap-3 transition-colors duration-200 text-left px-2 py-2 rounded-sm font-medium"
               onClick={() => onSelectLeague(league.id)}
             >
               <Link to={`/league-tables/${league.id}`}>

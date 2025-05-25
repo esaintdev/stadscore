@@ -1,5 +1,6 @@
 import React from 'react';
 import { BaseLeague } from './BaseLeague';
+import TopScorers from './TopScorers';
 
 const PremierLeague: React.FC = () => {
   const iframeSrc = 'https://widgets.sofascore.com/embed/tournament/1/season/61627/standings/Premier%20League?widgetTitle=Premier%20League&showCompetitionLogo=true';
@@ -14,7 +15,7 @@ const PremierLeague: React.FC = () => {
           margin: '0 auto',
           position: 'relative',
           paddingBottom: '140%',
-          height: 0,
+          height: '100%',
           overflow: 'hidden'
         }}>
           <iframe 
@@ -45,9 +46,16 @@ const PremierLeague: React.FC = () => {
           target="_blank" 
           rel="noopener noreferrer"
           className="text-blue-500 hover:underline"
-        >
-          Sofascore
-        </a>
+          loading="lazy"
+        />
+      </div>
+      
+      {/* Top Scorers Section */}
+      <div className="w-full mt-8">
+        <TopScorers 
+          competitionId="premier-league" 
+          seasonId="2023" 
+        />
       </div>
     </BaseLeague>
   );

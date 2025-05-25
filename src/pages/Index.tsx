@@ -1,39 +1,35 @@
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Menu, X } from 'lucide-react';
 import { useLeagues } from '@/services/matchesService';
 import LeagueSelector from '@/components/leagues/LeagueSelector';
 import LeagueTable from '@/components/leagues/LeagueTable';
 import FootballWidget from '@/components/widgets/FootballWidget';
-import sportCategories from '@/components/sportCatergories';
-import { Menu, X } from 'lucide-react';
 
 const HomePage = () => {
   const [selectedLeagueId, setSelectedLeagueId] = useState<string | null>(null);
-  const [selectedSport, setSelectedSport] = useState<string>('football');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   const { leagues, loading: leaguesLoading } = useLeagues();
+  const selectedSport = 'football'; // Default sport now handled in header
   
   // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      // Auto-close sidebar on mobile when resizing to desktop
       if (!mobile) {
         setIsSidebarOpen(false);
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
-  // Close sidebar when a link is clicked on mobile
+
   const handleLinkClick = () => {
     if (isMobile) {
       setIsSidebarOpen(false);
@@ -64,32 +60,25 @@ const HomePage = () => {
           <X className="h-6 w-6" />
         </button>
         
-        {sportCategories(selectedSport, (sport) => {
-          setSelectedSport(sport);
-          handleLinkClick();
-        })}
-
-        {selectedSport === 'football' && (
-          <div className="mt-6">
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Leagues</h2>
-            {leaguesLoading ? (
-              <div className="space-y-2">
-                {Array(5).fill(0).map((_, i) => (
-                  <Skeleton key={i} className="h-10 w-full rounded-md bg-gray-200" />
-                ))}
-              </div>
-            ) : (
-              <LeagueSelector 
-                leagues={leagues}
-                activeLeagueId={selectedLeagueId || ''} 
-                onSelectLeague={(id) => {
-                  setSelectedLeagueId(id || null);
-                  handleLinkClick();
-                }}
-              />
-            )}
-          </div>
-        )}
+        <div className="mt-6">
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Leagues</h2>
+          {leaguesLoading ? (
+            <div className="space-y-2">
+              {Array(5).fill(0).map((_, i) => (
+                <Skeleton key={i} className="h-10 w-full rounded-md bg-gray-200" />
+              ))}
+            </div>
+          ) : (
+            <LeagueSelector 
+              leagues={leagues}
+              activeLeagueId={selectedLeagueId || ''} 
+              onSelectLeague={(id) => {
+                setSelectedLeagueId(id || null);
+                handleLinkClick();
+              }}
+            />
+          )}
+        </div>
       </aside>
 
       {/* Main Content */}
@@ -103,7 +92,7 @@ const HomePage = () => {
           >
             <Menu className="h-6 w-6" />
           </button>
-          <h1 className="text-xl font-semibold text-gray-800">
+          <h1 className="text-xl font-semibold text-[#ff5b00]">
             {selectedSport === 'football' ? 'Football' : selectedSport}
           </h1>
         </div>
@@ -111,8 +100,8 @@ const HomePage = () => {
         <div className="p-4 md:p-6">
           <Tabs defaultValue="live" className="w-full">
             <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
-              <TabsTrigger value="live">Live Matches</TabsTrigger>
-              <TabsTrigger value="standings">League Table</TabsTrigger>
+              <TabsTrigger className='bg-gray-800 text-white' value="live">Live Matches</TabsTrigger>
+              <TabsTrigger className='bg-gray-800 text-white' value="standings">League Table</TabsTrigger>
             </TabsList>
             
             <TabsContent value="live">
