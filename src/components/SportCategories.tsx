@@ -18,18 +18,15 @@ interface SportCategoriesProps {
 
 const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps) => {
     return (
-        <div className="w-full overflow-x-auto py-2">
+        <div className="w-full overflow-x-auto py-2 scrollbar-hide">
             <div className="flex justify-center gap-2">
                 {Categories.map((sport) => (
                     <Link
                         key={sport.id}
                         to={sport.href}
                         onClick={() => onSelectSport(sport.id)}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
-                            selectedSport === sport.id 
-                                ? 'bg-[#ff5b00] text-white shadow-lg' 
-                                : 'bg-[#001a29] text-gray-300 hover:bg-[#00253a]'
-                        }`}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap 
+                            bg-[#00253a] text-gray-300 hover:bg-[#ff5b00] hover:text-white ${selectedSport === sport.id ? 'bg-[#ff5b00] text-white shadow-lg' : ''}`}
                     >
                         {sport.icon && <sport.icon className="w-4 h-4" />}
                         <span>{sport.name}</span>
