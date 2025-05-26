@@ -5,7 +5,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { useTheme } from '@/hooks/use-theme';
 import { Menu, X } from 'lucide-react';
 import Banner from '@/layout/Banner';
-import SportCategories from '@/components/sportCategories';
+import SportCategories from '@/components/SportCategories';
 
 
 const Header = () => {
