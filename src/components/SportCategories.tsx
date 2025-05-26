@@ -6,7 +6,7 @@ const Categories = [
     { id: 'basketball', name: 'Basketball', icon: CircleDot, href: '/basketball' },
     { id: 'tennis', name: 'Tennis', icon: Circle, href: '/tennis' },
     { id: 'handball', name: 'Handball', icon: CircleX, href: '/handball' },
-    { id: 'volleyball', name: 'Volleyball', icon: Circle, href: '/volleyball' },
+    { id: 'volleyball', name: 'Volleyball', icon: Volleyball, href: '/volleyball' },
     { id: 'baseball', name: 'Baseball', icon: CircleDot, href: '/baseball' },
     { id: 'cricket', name: 'Cricket', icon: CircleX, href: '/cricket' },
 ];

@@ -16,9 +16,13 @@ const Layout = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       {/* <Banner /> */}
-      <main className="flex-1 mx-2 pb-16 md:pb-0 pt-4">
-        <Outlet />
-      </main>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <main className="flex-1 overflow-y-auto px-2 pt-4">
+          <div className="max-w-7xl mx-auto w-full">
+            <Outlet />
+          </div>
+        </main>
+      </div>
       <Footer />
       <MobileNavigation />
     </div>

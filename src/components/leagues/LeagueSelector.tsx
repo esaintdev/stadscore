@@ -25,7 +25,7 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({
   className
 }) => {
   return (
-    <div className={cn("w-full mb-4", className)}>
+    <div className={cn("w-full mb-4",  className)}>
       <ScrollArea className="w-full h-[400px] pr-4">
         <div className="space-y-2">
           <Button

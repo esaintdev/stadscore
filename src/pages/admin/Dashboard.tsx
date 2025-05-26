@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetPostsQuery } from '../../services/blogApi';
+import { useGetPostsQuery } from '@/services/blogApi';
 import { format } from 'date-fns';
 import { FiEdit, FiTrash2, FiPlus } from 'react-icons/fi';
 

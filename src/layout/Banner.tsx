@@ -2,12 +2,13 @@ import React from 'react';
 
 const Banner = () => {
   return (
-    <div className="relative w-full overflow-hidden" style={{ paddingTop: '10%' }}>
-      <div className="absolute inset-0">
+    <div className="relative w-full overflow-hidden" style={{ height: '120px' }}>
+      <div className="absolute inset-0 w-full h-full">
         <img 
-          src="/imagesand/stad.jpg" 
+          src="/imagesand/stadi.jpg" 
           alt="Stadium banner" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
+          loading="lazy"
         />
       </div>
       

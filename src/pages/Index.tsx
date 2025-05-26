@@ -37,7 +37,7 @@ const HomePage = () => {
   };
   
   return (
-    <div className="flex w-full h-screen bg-gray-50 relative">
+    <div className="flex w-full h-full bg-gray-50 relative">
       {/* Mobile Sidebar Overlay */}
       {isMobile && isSidebarOpen && (
         <div 
@@ -48,7 +48,7 @@ const HomePage = () => {
 
       {/* Sidebar */}
       <aside 
-        className={`fixed md:static z-30 h-full bg-white border-r border-gray-200 p-4 overflow-y-auto transition-all duration-300 ease-in-out ${
+        className={`fixed md:sticky top-0 md:top-[var(--header-height,112px)] z-30 h-[calc(100vh-var(--header-height,112px))] bg-white border-r border-gray-200 p-4 transition-all duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } w-64`}
       >
@@ -97,18 +97,22 @@ const HomePage = () => {
           </h1>
         </div>
         
-        <div className="p-4 md:p-6">
-          <Tabs defaultValue="live" className="w-full">
-            <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
-              <TabsTrigger className='bg-gray-800 text-white' value="live">Live Matches</TabsTrigger>
-              <TabsTrigger className='bg-gray-800 text-white' value="standings">League Table</TabsTrigger>
-            </TabsList>
+        <div className="p-4 md:p-6 w-full">
+          <Tabs defaultValue="live" className="w-full max-w-7xl mx-auto">
+            <div className="flex justify-center w-full mb-6">
+              <TabsList className="grid w-full max-w-md grid-cols-2">
+                <TabsTrigger className='bg-gray-800 text-white' value="live">Live Matches</TabsTrigger>
+                <TabsTrigger className='bg-gray-800 text-white' value="standings">League Table</TabsTrigger>
+              </TabsList>
+            </div>
             
-            <TabsContent value="live">
+            <TabsContent value="live" className="w-full">
               <FootballWidget />
             </TabsContent>
-            <TabsContent value="standings">
-              <LeagueTable leagueId={selectedLeagueId || undefined} />
+            <TabsContent value="standings" className="w-full overflow-x-hidden">
+              <div className="min-w-max w-full ">
+                <LeagueTable />
+              </div>
             </TabsContent>
           </Tabs>
         </div>

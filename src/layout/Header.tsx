@@ -46,7 +46,7 @@ const Header = () => {
           ⚽ Football Live Scores • Latest Football Results • World Cup 2026 • Live Matches • League Standings • Match Stats
         </p>
       </div>
-      <Banner />
+      {/* <Banner /> */}
       <div className="w-full bg-[#001a29] py-2">
         <div className="container mx-auto">
           <SportCategories 

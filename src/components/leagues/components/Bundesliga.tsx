@@ -1,12 +1,11 @@
 import React from 'react';
 import { BaseLeague } from './BaseLeague';
-import TopScorers from './TopScorers';
 
-const PremierLeague: React.FC = () => {
-  const iframeSrc = 'https://widgets.sofascore.com/embed/tournament/1/season/61627/standings/Premier%20League?widgetTitle=Premier%20League&showCompetitionLogo=true';
+const Bundesliga: React.FC = () => {
+  const iframeSrc = 'https://widgets.sofascore.com/embed/tournament/35/season/61642/standings/Bundesliga?widgetTitle=Bundesliga&showCompetitionLogo=true';
   
   return (
-    <BaseLeague title="">
+    <BaseLeague title="Bundesliga">
       <div className="w-full overflow-x-auto">
         <div style={{
           minWidth: '320px',
@@ -15,11 +14,11 @@ const PremierLeague: React.FC = () => {
           margin: '0 auto',
           position: 'relative',
           paddingBottom: '140%',
-          height: '100%',
+          height: 0,
           overflow: 'hidden'
         }}>
           <iframe 
-            id="sofa-standings-premier-league"
+            id="sofa-standings-bundesliga"
             src={iframeSrc}
             style={{
               position: 'absolute',
@@ -30,7 +29,7 @@ const PremierLeague: React.FC = () => {
               border: 'none',
               overflow: 'auto'
             }}
-            title="Premier League Standings"
+            title="Bundesliga Standings"
             scrolling="yes"
             allowFullScreen
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -42,23 +41,16 @@ const PremierLeague: React.FC = () => {
       <div className="text-xs text-center text-muted-foreground p-2">
         Standings provided by{' '}
         <a 
-          href="https://www.sofascore.com/tournament/football/england/premier-league/17#id:61627" 
+          href="https://www.sofascore.com/tournament/football/germany/bundesliga/35" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-blue-500 hover:underline"
-          
-        />
-      </div>
-      
-      {/* Top Scorers Section */}
-      <div className="w-full mt-8">
-        <TopScorers 
-          competitionId="premier-league" 
-          seasonId="2023" 
-        />
+        >
+          Sofascore
+        </a>
       </div>
     </BaseLeague>
   );
 };
 
-export default PremierLeague;
+export default Bundesliga;
