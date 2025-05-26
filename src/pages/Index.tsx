@@ -48,7 +48,7 @@ const HomePage = () => {
 
       {/* Sidebar */}
       <aside 
-        className={`fixed md:sticky top-0 md:top-[var(--header-height,112px)] z-30 h-[calc(100vh-var(--header-height,112px))] bg-white border-r border-gray-200 p-4 transition-all duration-300 ease-in-out ${
+        className={`fixed md:sticky top-26 md:top-[var(--header-height,112px)] z-40 h-[calc(100vh-5rem)] md:h-[calc(100vh-var(--header-height,112px))] bg-white border-r border-gray-200 p-4 transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } w-64`}
       >
@@ -61,28 +61,19 @@ const HomePage = () => {
         </button>
         
         <div className="mt-6">
-          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Leagues</h2>
-          {leaguesLoading ? (
-            <div className="space-y-2">
-              {Array(5).fill(0).map((_, i) => (
-                <Skeleton key={i} className="h-10 w-full rounded-md bg-gray-200" />
-              ))}
-            </div>
-          ) : (
-            <LeagueSelector 
-              leagues={leagues}
-              activeLeagueId={selectedLeagueId || ''} 
-              onSelectLeague={(id) => {
-                setSelectedLeagueId(id || null);
-                handleLinkClick();
-              }}
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">FIFA World Ranking</h2>
+          <div className="mt-4">
+            <iframe 
+              style={{ height: '500px', width: '100%', border: 'none' }} 
+              src='https://www.scoremer.com/widgets/fifa_world_ranking?c=2F8162&f=FFF' 
+              title="FIFA World Ranking"
             />
-          )}
+          </div>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto h-full transition-all duration-300">
+      <div className="flex-1 overflow-y-auto h-full transition-all duration-300 relative z-30">
         {/* Mobile Header */}
         <div className="md:hidden p-4 border-b border-gray-200 bg-white flex items-center sticky top-0 z-10">
           <button 
