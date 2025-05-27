@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu} from 'lucide-react';
 
 interface SportsWidgetProps {
   height?: string;
   width?: string;
 }
 
-const Cricket: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' }) => {
+const Volleyball: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const selectedSport = 'cricket';
+  const selectedSport = 'volleyball';
 
   // Handle window resize
   useEffect(() => {
@@ -50,7 +50,7 @@ const Cricket: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' 
             <div className="text-center">
               <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-orange-400 to-pink-600 p-1">
                 <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
-                  <svg 
+                  <svg
                     className="w-12 h-12 md:w-16 md:h-16 text-orange-400" 
                     fill="currentColor" 
                     viewBox="0 0 20 20" 
@@ -70,12 +70,12 @@ const Cricket: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' 
               </h2>
               
               <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                We're working hard to bring you the best cricket experience. Stay tuned for exciting updates and features!
+                We're working hard to bring you the best volleyball experience. Stay tuned for exciting updates and features!
               </p>
               
               <div className="inline-flex items-center space-x-4">
                 <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse"></div>
-                <span className="text-sm text-gray-400">Cricket section launching soon</span>
+                <span className="text-sm text-gray-400">Volleyball section launching soon</span>
               </div>
               
               <div className="mt-12 pt-8 border-t border-white/10">
@@ -124,4 +124,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-export default Cricket;
+export default Volleyball;

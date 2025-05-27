@@ -2,11 +2,11 @@ import React from 'react';
 import { BaseLeague } from './BaseLeague';
 
 const Bundesliga: React.FC = () => {
-  const standingsSrc = 'https://widgets.sofascore.com/embed/tournament/42/season/63516/standings/Bundesliga?widgetTitle=Bundesliga&showCompetitionLogo=true';
+  const standingsSrc = 'https://widgets.sofascore.com/embed/tournament/33/season/63515/standings/Serie%20A?widgetTitle=Serie%20A&showCompetitionLogo=true';
   const teamOfTheWeekSrc = 'https://widgets.sofascore.com/embed/unique-tournament/35/season/63516/round/19392/teamOfTheWeek?showCompetitionLogo=true&widgetTheme=light&widgetTitle=Bundesliga';
 
   return (
-    <BaseLeague title="Bundesliga">
+    <BaseLeague title="Serie A">
       <div className="flex flex-col lg:flex-row gap-4 w-full">
         {/* Standings - Left Column */}
         <div className="w-full lg:w-1/2">
@@ -21,7 +21,7 @@ const Bundesliga: React.FC = () => {
               overflow: 'hidden'
             }}>
               <iframe 
-                id="sofa-standings-embed-bundesliga"
+                id="sofa-standings-embed-seria-a"
                 src={standingsSrc}
                 style={{
                   position: 'absolute',
@@ -44,7 +44,7 @@ const Bundesliga: React.FC = () => {
           <div className="text-xs text-center text-muted-foreground p-2">
             Standings provided by{' '}
             <a 
-              href="https://www.sofascore.com/tournament/football/germany/bundesliga/35" 
+              href="https://www.sofascore.com/tournament/football/italy/serie-a/23#id:63515" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline"

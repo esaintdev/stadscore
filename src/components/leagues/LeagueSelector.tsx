@@ -59,8 +59,6 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({
                   />
                 )}
                 <span>{league.name}</span>
-                <span></span>
-                <span></span>
               </div>
               </Link>
             </Button>

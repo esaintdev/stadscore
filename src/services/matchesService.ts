@@ -17,6 +17,7 @@ export interface League {
   name: string;
   country: string;
   logo: string;
+  href: string;
 }
 
 export interface Match {
@@ -32,46 +33,46 @@ export interface Match {
 // Mock data
 const mockLeagues: League[] = [
   // Top 5 European Leagues
-  { id: 'pl', name: 'Premier League', country: 'England', logo: 'https://media.api-sports.io/football/leagues/39.png' },
-  { id: 'laliga', name: 'La Liga', country: 'Spain', logo: 'https://media.api-sports.io/football/leagues/140.png' },
-  { id: 'bundesliga', name: 'Bundesliga', country: 'Germany', logo: 'https://media.api-sports.io/football/leagues/78.png' },
-  { id: 'seriea', name: 'Serie A', country: 'Italy', logo: 'https://media.api-sports.io/football/leagues/135.png' },
-  { id: 'ligue1', name: 'Ligue 1', country: 'France', logo: 'https://media.api-sports.io/football/leagues/61.png' },
+  { id: 'EPL', name: 'Premier League', country: 'England', logo: 'https://media.api-sports.io/football/leagues/39.png', href: "https://widgets.sofascore.com/embed/tournament/36/season/61643/standings/LaLiga?widgetTitle=LaLiga&showCompetitionLogo=true" },
+  { id: 'La Liga', name: 'La Liga', country: 'Spain', logo: 'https://media.api-sports.io/football/leagues/140.png', href: "https://www.scoremer.com/football/spain/la-liga" },
+  { id: 'Bundesliga', name: 'Bundesliga', country: 'Germany', logo: 'https://media.api-sports.io/football/leagues/78.png', href: "https://www.scoremer.com/football/germany/bundesliga" },
+  { id: 'Serie A', name: 'Serie A', country: 'Italy', logo: 'https://media.api-sports.io/football/leagues/135.png', href: "https://www.scoremer.com/football/italy/serie-a" },
+  { id: 'Ligue 1', name: 'Ligue 1', country: 'France', logo: 'https://media.api-sports.io/football/leagues/61.png', href: "https://www.scoremer.com/football/france/ligue-1" },
   
   // UEFA Competitions
-  { id: 'ucl', name: 'UEFA Champions League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/2.png' },
-  { id: 'uel', name: 'UEFA Europa League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/3.png' },
-  { id: 'uecl', name: 'UEFA Conference League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/848.png' },
-  { id: 'uefa_supercup', name: 'UEFA Super Cup', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/667.png' },
-  { id: 'euro_qual', name: 'European Championship', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/4.png' },
-  { id: 'nations_league', name: 'UEFA Nations League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/5.png' },
+  { id: 'ucl', name: 'UEFA Champions League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/2.png', href: "https://www.scoremer.com/football/europe/uefa-champions-league" },
+  { id: 'uel', name: 'UEFA Europa League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/3.png', href: "https://www.scoremer.com/football/europe/uefa-europa-league" },
+  { id: 'uecl', name: 'UEFA Conference League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/848.png', href: "https://www.scoremer.com/football/europe/uefa-conference-league" },
+  { id: 'uefa_supercup', name: 'UEFA Super Cup', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/667.png', href: "https://www.scoremer.com/football/europe/uefa-super-cup" },
+  { id: 'euro_qual', name: 'European Championship', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/4.png', href: "https://www.scoremer.com/football/europe/european-championship" },
+  { id: 'nations_league', name: 'UEFA Nations League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/5.png', href: "https://www.scoremer.com/football/europe/uefa-nations-league" },
 ];
 
 const mockTeams: Record<string, Team[]> = {
-  'pl': [
+  'EPL': [
     { id: 'man_utd', name: 'Manchester United', logo: 'https://media.api-sports.io/football/teams/33.png' },
     { id: 'arsenal', name: 'Arsenal', logo: 'https://media.api-sports.io/football/teams/42.png' },
     { id: 'chelsea', name: 'Chelsea', logo: 'https://media.api-sports.io/football/teams/49.png' },
     { id: 'liverpool', name: 'Liverpool', logo: 'https://media.api-sports.io/football/teams/40.png' },
     { id: 'man_city', name: 'Manchester City', logo: 'https://media.api-sports.io/football/teams/50.png' },
   ],
-  'laliga': [
+  'La Liga': [
     { id: 'real_madrid', name: 'Real Madrid', logo: 'https://media.api-sports.io/football/teams/541.png' },
     { id: 'barcelona', name: 'Barcelona', logo: 'https://media.api-sports.io/football/teams/529.png' },
     { id: 'atletico', name: 'Atletico Madrid', logo: 'https://media.api-sports.io/football/teams/530.png' },
     { id: 'sevilla', name: 'Sevilla', logo: 'https://media.api-sports.io/football/teams/536.png' },
   ],
-  'bundesliga': [
+  'Bundesliga': [
     { id: 'bayern', name: 'Bayern Munich', logo: 'https://media.api-sports.io/football/teams/157.png' },
-    { id: 'dortmund', name: 'Borussia Dortmund', logo: 'https://media.api-sports.io/football/teams/165.png' },
+    { id: 'dortmund', name: 'Borussia Dortmund', logo: 'https://media.api-sots.io/football/teams/165.png' },
     { id: 'leipzig', name: 'RB Leipzig', logo: 'https://media.api-sports.io/football/teams/173.png' },
   ],
-  'seriea': [
+  'Serie A': [
     { id: 'juventus', name: 'Juventus', logo: 'https://media.api-sports.io/football/teams/496.png' },
     { id: 'milan', name: 'AC Milan', logo: 'https://media.api-sports.io/football/teams/489.png' },
     { id: 'inter', name: 'Inter', logo: 'https://media.api-sports.io/football/teams/505.png' },
   ],
-  'ligue1': [
+  'Ligue 1': [
     { id: 'psg', name: 'Paris Saint Germain', logo: 'https://media.api-sports.io/football/teams/85.png' },
     { id: 'marseille', name: 'Marseille', logo: 'https://media.api-sports.io/football/teams/81.png' },
     { id: 'lyon', name: 'Lyon', logo: 'https://media.api-sports.io/football/teams/80.png' },

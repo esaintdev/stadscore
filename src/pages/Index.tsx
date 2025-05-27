@@ -90,19 +90,20 @@ const HomePage = () => {
         
         <div className="p-4 md:p-6 w-full">
           <Tabs defaultValue="live" className="w-full max-w-7xl mx-auto">
-            <div className="flex justify-center w-full mb-6">
-              <TabsList className="grid w-full max-w-md grid-cols-2">
+            <div className="flex justify-center w-full mb-6 ">
+              <TabsList className="grid w-full max-w-md grid-cols-2 bg-gray-800">
                 <TabsTrigger className='bg-gray-800 text-white' value="live">Live Matches</TabsTrigger>
-                <TabsTrigger className='bg-gray-800 text-white' value="standings">League Table</TabsTrigger>
+                <TabsTrigger className='bg-gray-800 text-white' value="standings">League Tables</TabsTrigger>
               </TabsList>
             </div>
             
             <TabsContent value="live" className="w-full">
               <FootballWidget />
             </TabsContent>
-            <TabsContent value="standings" className="w-full overflow-x-hidden">
-              <div className="min-w-max w-full ">
+            <TabsContent value="standings" className="w-full overflow-x-hidden" asChild>
+              <div className="w-full">
                 <LeagueTable />
+                {/* <Link to="/league-tables">League Tables</Link>  */}
               </div>
             </TabsContent>
           </Tabs>

@@ -11,10 +11,9 @@ const PremierLeague: React.FC = () => {
         <div style={{
           minWidth: '320px',
           width: '100%',
-          maxWidth: '768px',
           margin: '0 auto',
           position: 'relative',
-          paddingBottom: '140%',
+          paddingBottom: '100%',
           height: '100%',
           overflow: 'hidden'
         }}>

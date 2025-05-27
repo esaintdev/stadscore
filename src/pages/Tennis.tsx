@@ -6,10 +6,10 @@ interface SportsWidgetProps {
   width?: string;
 }
 
-const Cricket: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' }) => {
+const Tennis: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const selectedSport = 'cricket';
+  const selectedSport = 'tennis';
 
   // Handle window resize
   useEffect(() => {
@@ -70,12 +70,12 @@ const Cricket: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' 
               </h2>
               
               <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                We're working hard to bring you the best cricket experience. Stay tuned for exciting updates and features!
+                We're working hard to bring you the best tennis experience. Stay tuned for exciting updates and features!
               </p>
               
               <div className="inline-flex items-center space-x-4">
                 <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse"></div>
-                <span className="text-sm text-gray-400">Cricket section launching soon</span>
+                <span className="text-sm text-gray-400">Tennis section launching soon</span>
               </div>
               
               <div className="mt-12 pt-8 border-t border-white/10">
@@ -124,4 +124,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-export default Cricket;
+export default Tennis;

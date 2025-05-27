@@ -90,6 +90,7 @@ const Header = () => {
               <Link to="/" className="hover:text-[#ff5b00] transition-colors">Home</Link>
               <Link to="/" className="hover:text-[#ff5b00] transition-colors">Live Scores</Link>
               <Link to="/fixtures" className="hover:text-[#ff5b00] transition-colors">Fixtures</Link>
+              <Link to="/results" className="hover:text-[#ff5b00] transition-colors">Results</Link>
               <Link to="/tables" className="hover:text-[#ff5b00] transition-colors">Tables</Link>
               <Link to="/news" className="hover:text-[#ff5b00] transition-colors">News</Link>
             </div>

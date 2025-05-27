@@ -8,23 +8,21 @@ const MobileNavigation = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'Live', path: '/', icon: Home },
+    { name: 'Score', path: '/', icon: Home },
     { name: 'Fixtures', path: '/fixtures', icon: Calendar },
     { name: 'Results', path: '/results', icon: Trophy },
-    { name: 'Odds', path: '/odds', icon: BarChart3 },
-    { name: 'Cricket', path: '/cricket', icon: BookText },
-    { name: 'Games', path: 'https://games.stadscore.com', icon: Gamepad2, external: true },
+    { name: 'Leagues', path: '/league-tables', icon: BarChart3 },
+
   ];
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background border-t shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
       <div className="flex justify-around">
         {navItems.map(item => (
-          item.external ? (
-            <a
+          item ? (
+            <Link
               key={item.path}
-              href={item.path}
-              target="_blank"
+              to={item.path}
               rel="noopener noreferrer"
               className={cn(
                 "flex flex-col items-center py-3 px-2",
@@ -33,7 +31,7 @@ const MobileNavigation = () => {
             >
               <item.icon className="h-5 w-5 mb-1" />
               <span className="text-xs">{item.name}</span>
-            </a>
+            </Link>
           ) : (
             <Link 
               key={item.path}

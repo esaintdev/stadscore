@@ -1,78 +1,155 @@
+import React, { useEffect, useState } from 'react';
+import { Menu } from 'lucide-react';
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useLeagues } from '@/services/matchesService';
-import LeagueSelector from '@/components/leagues/LeagueSelector';
-import { Circle, CircleDot, CircleX } from 'lucide-react';
-import SportsWidget from '@/components/widgets/FootballWidget';
+interface SportsWidgetProps {
+  height?: string;
+  width?: string;
+}
 
-const sportsCategories = [
-  { id: 'football', name: 'Football', icon: Circle, href: '/' },
-  { id: 'basketball', name: 'Basketball', icon: CircleDot, href: '/basketball' },
-  { id: 'tennis', name: 'Tennis', icon: Circle, href: '/tennis' },
-  { id: 'handball', name: 'Handball', icon: CircleX, href: '/handball' },
-  { id: 'volleyball', name: 'Volleyball', icon: Circle, href: '/volleyball' },
-  { id: 'baseball', name: 'Baseball', icon: CircleDot, href: '/baseball' },
-  { id: 'cricket', name: 'Cricket', icon: CircleX, href: '/cricket' },
-];
+const SportsWidget: React.FC<SportsWidgetProps> = ({ height = '100%', width = '100%' }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const selectedSport = 'basketball';
+  const scheduleWidgetId = 'proballers-schedule-widget';
+  const standingsWidgetId = 'proballers-standings-widget';
+  const scheduleScriptId = 'proballers-schedule-script';
+  const standingsScriptId = 'proballers-standings-script';
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-const Basketball = () => {
-  const [selectedLeagueId, setSelectedLeagueId] = useState<string | null>(null);
-  const [selectedSport, setSelectedSport] = useState<string>('basketball');
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setIsSidebarOpen(false);
+    }
+  };
+
   
-  const { leagues, loading: leaguesLoading } = useLeagues();
-  
+  // Load a script and return a cleanup function
+  const useScript = (src: string, id: string, onLoad: () => void) => {
+    useEffect(() => {
+      if (document.getElementById(id)) return;
+
+      const script = document.createElement('script');
+      script.id = id;
+      script.src = src;
+      script.async = true;
+      script.onload = onLoad;
+
+      document.body.appendChild(script);
+
+      return () => {
+        const scriptElement = document.getElementById(id);
+        if (scriptElement) {
+          scriptElement.remove();
+        }
+      };
+    }, [src, id, onLoad]);
+  };
+
+  // Load schedule widget script
+  useScript(
+    'https://widgets.proballers.com/dist/team-schedule-results-full-widget-v1.0.js',
+    scheduleScriptId,
+    () => {
+      if (window.PbTeamScheduleResultsFullWidget) {
+        window.PbTeamScheduleResultsFullWidget.render();
+      }
+    }
+  );
+
+  // Load standings widget script
+  useScript(
+    'https://widgets.proballers.com/dist/league-standings-full-widget-v1.0.js',
+    standingsScriptId,
+    () => {
+      if (window.PbLeagueStandingsFullWidget) {
+        window.PbLeagueStandingsFullWidget.render();
+      }
+    }
+  );
+
+  // Cleanup widgets on unmount
+  useEffect(() => {
+    return () => {
+      [scheduleWidgetId, standingsWidgetId].forEach(id => {
+        const widget = document.getElementById(id);
+        if (widget) {
+          widget.innerHTML = '';
+        }
+      });
+    };
+  }, []);
+
   return (
-    <div className="space-y-6 animate-in fade-in duration-500">
-      <h1 className="text-3xl font-bold tracking-tight mb-4">Live Scores</h1>
+    <div className="pb-8">
+      <div className="md:hidden p-4 border-b border-gray-200 bg-white flex items-center sticky top-0 z-10">
+        
+        <button 
+          className="text-gray-500 hover:text-gray-700 mr-4"
+          onClick={() => setIsSidebarOpen(true)}
+          aria-label="Open sidebar"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+        <h1 className="text-xl font-semibold text-[#ff5b00]">
+          {selectedSport.charAt(0).toUpperCase() + selectedSport.slice(1)}
+        </h1>
+      </div>
       
-      <div className="overflow-x-auto pb-2">
-        <div className="flex gap-3 min-w-max">
-          {sportsCategories.map((sport) => (
-            <button 
-              key={sport.id}
-              onClick={() => setSelectedSport(sport.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                selectedSport === sport.id 
-                  ? 'bg-stadscore text-white shadow-lg hover:shadow-stadscore/20' 
-                  : 'bg-secondary text-foreground hover:bg-secondary/80 hover:shadow-md'
-              }`}
+      <div className="container mx-auto px-4 mt-6 space-y-8">
+        {/* Schedule Widget */}
+        <div className="bg-transparent rounded-lg shadow-md overflow-hidden">
+          <h2 className="text-lg font-semibold p-4 border-b">Schedule & Results</h2>
+          <div 
+            id={scheduleWidgetId}
+            className="w-full"
+            style={{ minHeight: '500px' }}
+          >
+            <div 
+              className="proballers-widget-team-schedule-results-full" 
+              data-proballers-widget-id="8a4323c1-9914-4242-b7c3-b18164b93f40"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
             >
-              {sport.icon && <sport.icon className="w-4 h-4" />}
-              <Link to={sport.href} className="ml-2">{sport.name}</Link>
-            </button>
-          ))}
+              <a href="https://www.proballers.com/" target="_blank" rel="noreferrer">
+                Loading schedule...
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Standings Widget */}
+        <div className="bg-transparent rounded-lg shadow-md overflow-hidden">
+          <h2 className="text-lg font-semibold p-4 border-b">League Standings</h2>
+          <div 
+            id={standingsWidgetId}
+            className="w-full"
+            style={{ minHeight: '500px' }}
+          >
+            <div 
+              className="proballers-widget-league-standings-full" 
+              data-proballers-widget-id="8f25b27f-83a6-45c2-829b-29e8592fca77"
+              data-proballers-base-url="https://widgets.proballers.com"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
+            >
+              <a href="https://www.proballers.com/" target="_blank" rel="noreferrer">
+                Loading standings...
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-
-      {selectedSport === 'basketball' && (
-        <>
-          {leaguesLoading ? (
-            <div className="flex space-x-2 overflow-x-auto pb-2">
-              {Array(5).fill(0).map((_, i) => (
-                <Skeleton key={i} className="h-8 w-24 rounded-md" />
-              ))}
-            </div>
-          ) : (
-            <LeagueSelector 
-              leagues={leagues}
-              activeLeagueId={selectedLeagueId || ''} 
-              onSelectLeague={(id) => setSelectedLeagueId(id || null)}
-              className="mt-2" 
-            />
-          )}
-
-          <Tabs defaultValue="live" className="w-full">
-            <TabsContent value="live">
-              <SportsWidget title="Basketball Live Scores" height="700px" />
-            </TabsContent>
-          </Tabs>
-        </>
-      )}
     </div>
   );
 };
 
-export default Basketball;
+declare global {
+  interface Window {
+    PbTeamScheduleResultsFullWidget: {
+      render: () => void;
+    };
+    PbLeagueStandingsFullWidget: {
+      render: () => void;
+    };
+  }
+}
+
+export default SportsWidget;

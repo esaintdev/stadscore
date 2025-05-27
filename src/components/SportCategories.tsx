@@ -1,5 +1,6 @@
 import { Circle, CircleDot, CircleX, Volleyball } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
 
 const Categories = [
     { id: 'football', name: 'Football', icon: Volleyball, href: '/' },
@@ -19,6 +20,75 @@ interface SportCategoriesProps {
 const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps) => {
     // Create an array that repeats the categories multiple times for infinite scroll on mobile
     const repeatedCategories = [...Categories, ...Categories, ...Categories];
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    // Touch event handlers
+    const handleTouchStart = (e: React.TouchEvent) => {
+        if (!scrollContainerRef.current) return;
+        const touch = e.touches[0];
+        setIsDragging(true);
+        setStartX(touch.clientX);
+        setScrollLeft(scrollContainerRef.current.scrollLeft);
+        setIsPaused(true);
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (!isDragging || !scrollContainerRef.current) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        const x = touch.clientX;
+        const walk = (x - startX) * 2; // Adjust scroll speed
+        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleTouchEnd = () => {
+        setIsDragging(false);
+        // Only resume auto-scroll after a delay if not manually scrolling
+        setTimeout(() => {
+            if (!isDragging) {
+                setIsPaused(false);
+            }
+        }, 2000);
+    };
+
+    // Mouse event handlers for desktop
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!scrollContainerRef.current) return;
+        e.preventDefault();
+        setIsDragging(true);
+        setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+        setScrollLeft(scrollContainerRef.current.scrollLeft);
+        setIsPaused(true);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !scrollContainerRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainerRef.current.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+        // Only resume auto-scroll after a delay if not manually scrolling
+        setTimeout(() => {
+            if (!isDragging) {
+                setIsPaused(false);
+            }
+        }, 2000);
+    };
+
+    const handleMouseLeave = () => {
+        if (isDragging) {
+            setIsDragging(false);
+            setIsPaused(false);
+        }
+    };
     
     return (
         <div className="w-full">
@@ -40,9 +110,26 @@ const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps)
                 </div>
             </div>
             
-            {/* Mobile View - Infinite Scroll */}
-            <div className="md:hidden overflow-x-hidden py-2 relative">
-                <div className="flex gap-2 animate-infinite-scroll-mobile whitespace-nowrap">
+            {/* Mobile View - Draggable Scroll */}
+            <div className="md:hidden overflow-x-auto py-2 relative scrollbar-hide">
+                <div 
+                    ref={scrollContainerRef}
+                    className={`flex gap-2 whitespace-nowrap ${!isPaused ? 'animate-infinite-scroll-mobile' : ''}`}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseLeave}
+                    style={{ 
+                        cursor: isDragging ? 'grabbing' : 'grab',
+                        userSelect: 'none',
+                        WebkitOverflowScrolling: 'touch',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none'
+                    }}
+                >
                     {repeatedCategories.map((sport, index) => (
                         <Link
                             key={`mobile-${sport.id}-${index}`}
@@ -58,8 +145,8 @@ const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps)
                 </div>
                 
                 {/* Fade effect on the sides - Mobile only */}
-                <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-[#0f1a2e] to-transparent pointer-events-none"></div>
-                <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-[#0f1a2e] to-transparent pointer-events-none"></div>
+                {/* <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-[#0f1a2e] to-transparent pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-[#0f1a2e] to-transparent pointer-events-none"></div> */}
                 
                 {/* Mobile Animation styles */}
                 <style jsx global>{`
@@ -74,9 +161,17 @@ const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps)
                     .animate-infinite-scroll-mobile {
                         display: inline-flex;
                         animation: scrollMobile 40s linear infinite;
+                        animation-play-state: running;
                     }
-                    .animate-infinite-scroll-mobile:hover {
+                    .animate-infinite-scroll-mobile.paused {
                         animation-play-state: paused;
+                    }
+                    .scrollbar-hide::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .scrollbar-hide {
+                        -ms-overflow-style: none;
+                        scrollbar-width: none;
                     }
                     @media (min-width: 768px) {
                         .animate-infinite-scroll-mobile {
