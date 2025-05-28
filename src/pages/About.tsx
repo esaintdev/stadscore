@@ -8,7 +8,7 @@ const About = () => {
       
       <div className="flex items-center justify-center py-6">
         <img 
-          src="/imagesand/bd54bfe1-8a85-4f9d-bb70-3d74ba96890f.png" 
+          src="/lovable-uploads/bd54bfe1-8a85-4f9d-bb70-3d74ba96890f.png" 
           alt="Stadscore Logo Full" 
           className="h-auto max-w-full" 
         />

@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
       <img 
-        src="/imagesand/3e581224-b334-42cc-89b1-ea6935678777.png" 
+        src="/lovable-uploads/3e581224-b334-42cc-89b1-ea6935678777.png" 
         alt="Stadscore Logo" 
         className="h-24 w-24 mb-6" 
       />

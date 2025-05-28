@@ -101,7 +101,7 @@ const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps)
                             to={sport.href}
                             onClick={() => onSelectSport(sport.id)}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap
-                                bg-[#00253a] text-gray-300 hover:bg-[#ff5b00] hover:text-white ${selectedSport === sport.id ? 'bg-[#ff5b00] text-white shadow-lg' : ''}`}
+                                bg-[#ff5b00] text-white hover:bg-black hover:text-[#ff5b00] ${selectedSport === sport.id ? 'bg-[#ff5b00] text-white shadow-lg' : ''}`}
                         >
                             {sport.icon && <sport.icon className="w-4 h-4" />}
                             <span>{sport.name}</span>
@@ -110,8 +110,12 @@ const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps)
                 </div>
             </div>
             
-            {/* Mobile View - Draggable Scroll */}
+            {/* Mobile View - Draggable Scroll with Fade Effect */}
             <div className="md:hidden overflow-x-auto py-2 relative scrollbar-hide">
+                {/* Left Fade Effect */}
+                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+                {/* Right Fade Effect */}
+                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
                 <div 
                     ref={scrollContainerRef}
                     className={`flex gap-2 whitespace-nowrap ${!isPaused ? 'animate-infinite-scroll-mobile' : ''}`}
@@ -136,7 +140,7 @@ const SportCategories = ({ selectedSport, onSelectSport }: SportCategoriesProps)
                             to={sport.href}
                             onClick={() => onSelectSport(sport.id)}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap flex-shrink-0
-                                bg-[#00253a] text-gray-300 hover:bg-[#ff5b00] hover:text-white ${selectedSport === sport.id ? 'bg-[#ff5b00] text-white shadow-lg' : ''}`}
+                                bg-[#ff5b00] text-white hover:bg-black hover:text-[#ff5b00] ${selectedSport === sport.id ? 'bg-[#ff5b00] text-white shadow-lg' : ''}`}
                         >
                             {sport.icon && <sport.icon className="w-4 h-4" />}
                             <span>{sport.name}</span>

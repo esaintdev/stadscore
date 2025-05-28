@@ -11,6 +11,9 @@ export default {
   ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ['Space Grotesk', 'sans-serif'],
+    },
     container: {
       center: true,
       padding: '2rem',

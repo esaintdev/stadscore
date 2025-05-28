@@ -1,18 +1,17 @@
 
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { Home, Calendar, Trophy, BarChart3, BookText, Gamepad2 } from 'lucide-react';
+import { Home, Calendar, Trophy, Gamepad2, BarChart } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 const MobileNavigation = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'Score', path: '/', icon: Home },
+    { name: 'Live', path: '/', icon: Home },
     { name: 'Fixtures', path: '/fixtures', icon: Calendar },
     { name: 'Results', path: '/results', icon: Trophy },
-    { name: 'Leagues', path: '/league-tables', icon: BarChart3 },
-
+    { name: 'Leagues', path: '/leagues', icon: BarChart },
   ];
 
   return (
@@ -20,9 +19,9 @@ const MobileNavigation = () => {
       <div className="flex justify-around">
         {navItems.map(item => (
           item ? (
-            <Link
+            <a
               key={item.path}
-              to={item.path}
+              href={item.path}
               rel="noopener noreferrer"
               className={cn(
                 "flex flex-col items-center py-3 px-2",
@@ -31,7 +30,7 @@ const MobileNavigation = () => {
             >
               <item.icon className="h-5 w-5 mb-1" />
               <span className="text-xs">{item.name}</span>
-            </Link>
+            </a>
           ) : (
             <Link 
               key={item.path}

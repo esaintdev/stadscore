@@ -7,16 +7,17 @@ import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import FootballWidget from '@/components/widgets/FootballWidget';
-import ChampionsLeague from '@/components/fixtures/ChampionsLeague';
-import MLS from '@/components/fixtures/MLS';
 
-const Fixtures = () => {
+const Results = () => {
+  const [selectedLeagueId, setSelectedLeagueId] = useState<string | null>(null);
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [selectedSport, setSelectedSport] = useState<string>('football');
   
+  const { leagues, loading: leaguesLoading } = useLeagues();
+  
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
-      <h1 className="text-3xl font-bold tracking-tight">Upcoming Fixtures</h1>
+      <h1 className="text-3xl font-bold tracking-tight">Results</h1>
       
       <div className="flex flex-wrap gap-4 mb-4">
         <button 
@@ -53,18 +54,29 @@ const Fixtures = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
-          <div className="mt-2">
+          {selectedSport === 'football' && leaguesLoading ? (
+            <div className="flex space-x-2 overflow-x-auto pb-2">
+              {Array(5).fill(0).map((_, i) => (
+                <Skeleton key={i} className="h-8 w-24 rounded-md" />
+              ))}
+            </div>
+          ) : selectedSport === 'football' && (
+            <LeagueSelector 
+              leagues={leagues}
+              activeLeagueId={selectedLeagueId || ''} 
+              onSelectLeague={(id) => setSelectedLeagueId(id || null)} 
+            />
+          )}
+          
+          <div className="mt-6">
             {selectedSport === 'football' && (
-              <>
-              <ChampionsLeague />
-              <MLS />
-              </>
+              <FootballWidget type="results" league={selectedLeagueId || undefined} />
             )}
             {selectedSport === 'basketball' && (
-              <FootballWidget type="fixtures" />
+              <FootballWidget type="results" />
             )}
             {selectedSport === 'tennis' && (
-              <FootballWidget type="fixtures" />
+              <FootballWidget type="results" />
             )}
           </div>
         </div>
@@ -89,4 +101,4 @@ const Fixtures = () => {
   );
 };
 
-export default Fixtures;
+export default Results;

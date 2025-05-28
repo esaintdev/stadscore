@@ -15,13 +15,9 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
     >
       {theme === "dark" ? (
-        <Button className="bg-gray-700 hover:bg-gray-700" size="icon">
-          <Sun className="h-5 w-5 text-white"/>
-        </Button>
+        <Sun className="h-5 w-5" />
       ) : (
-        <Button size="icon">
-          <Moon className="h-5 w-5 text-white " />
-        </Button>
+        <Moon className="h-5 w-5" />
       )}
     </Button>
   );
