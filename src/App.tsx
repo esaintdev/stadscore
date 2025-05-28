@@ -8,9 +8,6 @@ import Layout from "./components/layout/Layout";
 import Index from "./pages/Index";
 import Fixtures from "./pages/Fixtures";
 import Results from "./pages/Results";
-import Tables from "./pages/Tables";
-import Odds from "./pages/Odds";
-import Cricket from "./pages/Cricket";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
@@ -32,9 +29,6 @@ const App = () => (
             <Route path="/fixtures" element={<Fixtures />} />
             <Route path="/results" element={<Results />} />
             <Route path="/league/:leagueId?" element={<League />} />
-            {/* <Route path="/tables" element={<Tables />} /> */}
-            {/* <Route path="/odds" element={<Odds />} /> */}
-            {/* <Route path="/cricket" element={<Cricket />} /> */}
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
