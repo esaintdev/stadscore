@@ -14,6 +14,8 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import League from "./pages/League";
+import { Basketball } from "./pages/Basketball";
+import TestingApi from "./pages/TestingApi";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />
+            <Route path="/testingapi" element={<TestingApi />} />
+            <Route path="/basketball" element={<Basketball />} />
             <Route path="/fixtures" element={<Fixtures />} />
             <Route path="/results" element={<Results />} />
             <Route path="/league/:leagueId?" element={<League />} />

@@ -1,28 +1,21 @@
-// LiveScoreWidget.tsx (React component)
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
-const LiveScoreWidget = () => {
-  const widgetRef = useRef<HTMLDivElement>(null);
+const CompoundWidget = () => {
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.type = 'application/javascript';
+        script.src = 'https://widget.enetscores.com/FW9CB70F65E0424744/cid/11/pr/42/lng/en';
+        script.async = true;
+    
+        document.getElementById('enet-widget')?.appendChild(script);
+    
+        return () => {
+          // Optional cleanup if needed
+          script.remove();
+        };
+      }, []);
+    
+      return <div id="enet-widget" />;
+    };
 
-  useEffect(() => {
-    // Prevent reloading the script multiple times
-    if (!document.getElementById('soccersapi-widget-script')) {
-      const script = document.createElement('script');
-      script.id = 'soccersapi-widget-script';
-      script.src = 'https://ls.soccersapi.com/widget/res/awo_w9000_682fba927a5ad/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
-
-  return (
-    <div
-      id="ls-widget"
-      data-w="awo_w9000_682fba927a5ad"
-      className="livescore-widget"
-      ref={widgetRef}
-    />
-  );
-};
-
-export default LiveScoreWidget;
+export default CompoundWidget;

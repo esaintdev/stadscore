@@ -26,7 +26,7 @@ const SportsWidget: React.FC<SportsWidgetProps> = ({ sport, type, height }) => {
           return '';
       }
     } else if (sport === 'basketball') {
-      return `<iframe src="https://widgets.flashscore.com/?identity=stadscore&sports=3&selectedStage=2" width="100%" height="100%" frameborder="0"></iframe>`;
+      return `<iframe src="https://www.flashscore.com/basketball/" width="100%" height="100%" frameborder="0"></iframe>`;
     } else if (sport === 'tennis') {
       return `<iframe src="https://widgets.flashscore.com/?identity=stadscore&sports=2&selectedStage=2" width="100%" height="100%" frameborder="0"></iframe>`;
     } else if (sport === 'cricket') {

@@ -13,6 +13,7 @@ import LiveScoresWidget from '@/components/widgets/LiveScoresWidget';
 
 import SportCategories from '@/components/widgets/SportCatergories';
 import FootballFixtures from '@/components/fixtures/MLS';
+import CompoundWidget from '@/components/widgets/CompoundWidget';
 
 const HomePage = () => {
   const [selectedLeagueId, setSelectedLeagueId] = useState<string | null>(null);
@@ -70,6 +71,7 @@ const HomePage = () => {
             
             <TabsContent value="live">
               <LiveScoresWidget type="livescores" league={selectedLeagueId || undefined} />
+             
             </TabsContent>
             
             <TabsContent value="today">
