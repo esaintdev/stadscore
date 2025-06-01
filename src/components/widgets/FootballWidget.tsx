@@ -12,6 +12,7 @@ const FootballWidget: React.FC<FootballWidgetProps> = ({ type, league, height })
   // Use LiveScore widget API
   const getWidgetHtml = () => {
     switch (type) {
+
       case 'livescores':
         return `<iframe src="https://www.livescore.in/free-livescore/all/" width="100%" height="100%" frameborder="0"></iframe>`;
       case 'fixtures':

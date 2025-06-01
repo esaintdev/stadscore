@@ -13,7 +13,7 @@ import LiveScoresWidget from '@/components/widgets/LiveScoresWidget';
 
 import SportCategories from '@/components/widgets/SportCatergories';
 import FootballFixtures from '@/components/fixtures/MLS';
-import CompoundWidget from '@/components/widgets/CompoundWidget';
+// import CompoundWidget from '@/components/widgets/CompoundWidget';
 
 const HomePage = () => {
   const [selectedLeagueId, setSelectedLeagueId] = useState<string | null>(null);
@@ -48,7 +48,7 @@ const HomePage = () => {
 
       {selectedSport === 'football' && (
         <>
-          {leaguesLoading ? (
+          {/* {leaguesLoading ? (
             <div className="flex space-x-2 overflow-x-auto pb-2">
               {Array(5).fill(0).map((_, i) => (
                 <Skeleton key={i} className="h-8 w-24 rounded-md" />
@@ -61,7 +61,7 @@ const HomePage = () => {
               onSelectLeague={(id) => setSelectedLeagueId(id || null)}
               className="mt-2" 
             />
-          )}
+          )} */}
 
           <Tabs defaultValue="live" className="w-full">
             <TabsList className="w-full grid grid-cols-2 mb-4">

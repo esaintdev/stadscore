@@ -21,7 +21,7 @@ const navLinks: Array<{
   { to: "/", label: "Live Scores" },
   { to: "/fixtures", label: "Fixtures" },
   { to: "/results", label: "Results" },
-  { to: "/league", label: "League" },
+  { to: "/leagues", label: "League" },
   { 
     href: "https://blog.stadscore.com", 
     label: "Blog", 

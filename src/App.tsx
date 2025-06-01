@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Index from "./pages/Index";
-import Fixtures from "./pages/Fixtures";
+import Fixtures from "./pages/AllFixtures";
 import Results from "./pages/Results";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import League from "./pages/League";
 import { Basketball } from "./pages/Basketball";
 import TestingApi from "./pages/TestingApi";
+import Leagues from "./pages/Leagues";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/fixtures" element={<Fixtures />} />
             <Route path="/results" element={<Results />} />
             <Route path="/league/:leagueId?" element={<League />} />
+            <Route path="/leagues" element={<Leagues />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />

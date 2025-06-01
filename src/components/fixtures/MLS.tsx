@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const FootballFixtures = () => {
+const MLS = () => {
   useEffect(() => {
     // Prevent multiple script injections
     const existingScript = document.getElementById('scores365-script');
@@ -13,7 +13,7 @@ const FootballFixtures = () => {
     }
   }, []);
 
-  return (
+  return (  
     <div>
       <div
         data-widget-type="entityScores"
@@ -33,4 +33,4 @@ const FootballFixtures = () => {
   );
 };
 
-export default FootballFixtures;
+export default MLS;
