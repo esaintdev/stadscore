@@ -35,34 +35,34 @@ const AllFixtures = () => {
         <div className="relative">
           <div className="overflow-x-auto pb-3 -mx-4 sm:mx-0 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="inline-flex w-max min-w-full px-4 sm:px-0">
-              <TabsList className="w-full inline-flex space-x-1 sm:space-x-2 px-1">
+              <TabsList className="w-full inline-flex space-x-1 sm:space-x-2 px-1 p-6">
                 <TabsTrigger 
                   value="all" 
-                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200"
+                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200 data-[state=active]:text-white data-[state=active]:bg-[#ff5b00]"
                 >
                   All
                 </TabsTrigger>
                 <TabsTrigger 
                   value="Club World Cup" 
-                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200"
+                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200 data-[state=active]:text-white data-[state=active]:bg-[#ff5b00]"
                 >
                   Club World Cup
                 </TabsTrigger>
                 <TabsTrigger 
                   value="MLS" 
-                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-lg transition-all duration-200"
+                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200 data-[state=active]:text-white data-[state=active]:bg-[#ff5b00]"
                 >
                   MLS
                 </TabsTrigger>
                 <TabsTrigger 
                   value="UEFA Champions League" 
-                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-lg transition-all duration-200"
+                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200 data-[state=active]:text-white data-[state=active]:bg-[#ff5b00]"
                 >
                   UEFA Champions League
                 </TabsTrigger>
                 <TabsTrigger 
                   value="UEFA Europa League" 
-                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-lg transition-all duration-200"
+                  className="px-4 py-2.5 text-sm font-medium whitespace-nowrap rounded-sm transition-all duration-200 data-[state=active]:text-white data-[state=active]:bg-[#ff5b00]"
                 >
                   UEFA Europa League
                 </TabsTrigger>

@@ -5,7 +5,7 @@ const ClubWorldCup = () => {
     <div>
       <iframe 
         id="sofa-cupTree-embed-357-69619-10819534" 
-        src="https://widgets.sofascore.com/embed/unique-tournament/679/season/61645/cuptree/10819860?widgetTitle=UEFA Europa League 24/25, Knockout stage&showCompetitionLogo=true&widgetTheme=light" 
+        src="https://widgets.sofascore.com/embed/unique-tournament/679/season/61645/cuptree/10819860?widgetTitle=UEFA Europa League 24/25, Knockout stage&showCompetitionLogo=true&widgetTheme=dark" 
         style={{
           height: '900px',
           maxWidth: '100%',

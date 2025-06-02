@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ThemeToggle } from '@/components/ThemeToggle';
+// import { ThemeToggle } from '@/components/ThemeToggle';
 import { useTheme } from '@/hooks/use-theme';
 import { Gamepad2, Menu, X } from 'lucide-react';
 import SportCategories from '../widgets/SportCatergories'; // Note: There's a typo in the filename (Catergories instead of Categories)
@@ -106,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({ selectedSport, onSelectSport }) 
           </nav>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             {/* Mobile menu button */}
             <button
               onClick={toggleMobileMenu}
